@@ -1,0 +1,126 @@
+/* Modal height change */
+.modal {
+    top: 5% !important;
+    max-height: 90% !important;
+}
+
+.modal.modal-fixed-footer {
+    height: 90% !important;
+}
+
+/* Full width modal */
+.modal.modal-full {
+    width: 99% !important;
+}
+
+@media (max-width: 768px) {
+    .modal.modal-full {
+        width: auto !important;
+    }
+}
+
+.t-select {
+    display: block !important;
+}
+
+.error {
+    color: red !important;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+.modal-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+
+.modal-header .close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem auto;
+}
+
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+
+button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+thead.theading {
+    background: #eaeaea;
+    color: #fff !important;
+    font-size: 16px;
+}
+
+.new_table td, .new_table th {
+    border: 1px solid #444 !important;
+    color: #444 !important;
+}
+
+.table_alter tbody tr:nth-child(even) {
+    background: #6793de38;
+}
+
+.table_alter tbody tr:nth-child(odd) {
+    background: #fff;
+}
+
+.search_field {
+    margin: unset !important;
+    border: unset !important;
+}
+
+#temp_row .center {
+    color: #00bcd4 !important;
+    font-size: 20px;
+}
+
+.center {
+    text-align: center !important;
+}
+
+.cbtn {
+    background: grey;
+    color: #fff;
+    padding: 4px;
+    border-radius: 5px;
+}

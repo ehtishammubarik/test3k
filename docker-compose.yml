@@ -1,0 +1,55 @@
+version: '3.3'
+services:
+    drone-server:
+        image: 'drone/drone:1.9.0'
+        volumes:
+            # - '/data:/var/lib/drone'
+            - './data:/data'
+        environment:
+            - 'DRONE_RPC_SECRET=9d568ec6-9990-43b4-ac50-a1b91fd1f233'
+            - 'DRONE_SERVER_HOST=cicd.aceso.no'
+            - 'DRONE_SERVER_PROTO=http'
+            - 'DRONE_TLS_AUTOCERT=false'
+            - 'DRONE_RUNNER_CAPACITY=10'
+            - 'DRONE_LOGS_PRETTY=true'
+            - 'DRONE_LOGS_COLOR=true'
+            # Gitea options
+            - 'DRONE_GITEA_SERVER=https://git.aceso.no'
+            - 'DRONE_GITEA_CLIENT_ID=9d568ec6-9990-43b4-ac50-a1b91fd1f233'
+            - 'DRONE_GITEA_CLIENT_SECRET=ygpveWy63QaYOn6LWtiTrwjKHWqcnCkE41PH7HqP_TU='
+        ports:
+            - '8081:80'
+        labels:
+            - 'traefik.docker.network=aceso-git-network'
+            - 'traefik.frontend.rule=Host:cicd.aceso.no'
+            - 'traefik.enable=true'
+            - 'traefik.port=80'
+        restart: always
+        container_name: drone-server
+        networks:
+            - aceso-git-network
+        logging:
+            options:
+              max-size: "200k"
+              max-file: "10"
+# runner for docker version
+    drone-runner:
+        image: drone/drone-runner-docker:1.5.0
+        container_name: drone-runner
+        restart: always
+        depends_on:
+        - drone-server
+        volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        environment:
+        - DRONE_RPC_HOST=cicd.aceso.no
+        - DRONE_RPC_PROTO=https
+        - DRONE_RPC_SECRET=9d568ec6-9990-43b4-ac50-a1b91fd1f233
+        - DRONE_RUNNER_CAPACITY=5
+        logging:
+            options:
+              max-size: "200k"
+              max-file: "2"
+networks:
+  aceso-git-network:
+    external: true 
